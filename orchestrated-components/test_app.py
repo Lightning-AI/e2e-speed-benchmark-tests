@@ -7,7 +7,7 @@ from lightning_app.testing.testing import run_app_in_cloud
 
 
 @pytest.mark.cloud
-@pytest.mark.timeout(26)
+@pytest.mark.timeout(40)
 def test_run_app():
     with run_app_in_cloud(os.path.dirname(__file__)) as (
         _,
