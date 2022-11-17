@@ -6,7 +6,7 @@ import time
 from lightning.app.testing.testing import run_app_in_cloud
 
 
-APP_TIMEOUT_SECONDS = 30
+APP_TIMEOUT_SECONDS = 60
 
 
 @pytest.mark.cloud
