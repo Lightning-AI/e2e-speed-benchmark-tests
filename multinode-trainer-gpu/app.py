@@ -10,7 +10,7 @@ class LightningTrainerDistributed(L.LightningWork):
         model = BoringModel()
         trainer = L.Trainer(max_epochs=10, strategy="ddp")
         trainer.fit(model)
-        print('BENCHMARK 3 DONE')
+        print('BENCHMARK DONE')
 
 # 2 GPU nodes (keep the 4v100 nodes)...
 # we want to make sure this cost is also going down...

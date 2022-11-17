@@ -8,7 +8,7 @@ class TrainComponent(L.LightningWork):
 class AnalyzeComponent(L.LightningWork):
     def run(self, x):
         print(f'analyze model on {x}')
-        print(f'BENCHMARK 4 DONE')
+        print(f'BENCHMARK DONE')
 
 class WorkflowOrchestrator(L.LightningFlow):
     def __init__(self) -> None:

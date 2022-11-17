@@ -8,6 +8,7 @@ from lightning.app.testing.testing import run_app_in_cloud
 
 APP_TIMEOUT_SECONDS = 160
 
+
 @pytest.mark.cloud
 @pytest.mark.flaky(retries=3, delay=5)
 def test_run_app():
@@ -17,11 +18,15 @@ def test_run_app():
         fetch_logs,
         _,
     ):
-        start_time = time.time()
+        start_time = None
         has_logs = False
         while not has_logs:
-            assert time.time() - start_time < APP_TIMEOUT_SECONDS
+            if start_time is not None:
+                assert time.time() - start_time < APP_TIMEOUT_SECONDS
             for log in fetch_logs():
-                if "['BENCHMARK 3 DONE']" in log:
+                if "PRINTING LOGS" in log:
+                    if start_time is None:
+                        start_time = time.time()
+                if "BENCHMARK DONE" in log:
                     has_logs = True
             time.sleep(0.1)

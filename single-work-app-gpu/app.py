@@ -4,7 +4,7 @@ import lightning as L
 
 class YourComponent(L.LightningWork):
    def run(self):
-      print('BENCHMARK 2 DONE')
+      print('BENCHMARK DONE')
 
 # run on a cloud machine ("cpu", "gpu", ...)
 compute = L.CloudCompute("gpu")
