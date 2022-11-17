@@ -1,4 +1,3 @@
-lightning
 pytest
 pytest-retry
 pytest-timeout
