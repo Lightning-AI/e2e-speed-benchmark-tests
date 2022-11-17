@@ -6,8 +6,10 @@ import time
 from lightning.app.testing.testing import run_app_in_cloud
 
 
+APP_TIMEOUT_SECONDS = 40
+
 @pytest.mark.cloud
-@pytest.mark.timeout(40)
+@pytest.mark.retry(3)
 def test_run_app():
     with run_app_in_cloud(os.path.dirname(__file__)) as (
         _,
@@ -15,9 +17,10 @@ def test_run_app():
         fetch_logs,
         _,
     ):
-        # 6: Validate the logs.
+        start_time = time.time()
         has_logs = False
         while not has_logs:
+            assert time.time() - start_time < APP_TIMEOUT_SECONDS
             for log in fetch_logs():
                 if "['BENCHMARK 3 DONE']" in log:
                     has_logs = True
