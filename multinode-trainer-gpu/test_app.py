@@ -20,7 +20,7 @@ def test_run_app():
         start_time = time.time()
         has_logs = False
         while not has_logs:
-            assert time.time() - start_time < APP_TIMEOUT_SECONDS
+            assert time.time() - start_time > APP_TIMEOUT_SECONDS
             for log in fetch_logs():
                 if "['BENCHMARK 3 DONE']" in log:
                     has_logs = True
