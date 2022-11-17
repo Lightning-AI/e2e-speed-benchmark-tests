@@ -1,3 +1,4 @@
+lightning
 pytest
 pytest-timeout
 playwright

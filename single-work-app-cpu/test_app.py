@@ -3,7 +3,7 @@ import pytest
 import time
 
 
-from lightning_app.testing.testing import run_app_in_cloud
+from lightning.app.testing.testing import run_app_in_cloud
 
 
 @pytest.mark.cloud
