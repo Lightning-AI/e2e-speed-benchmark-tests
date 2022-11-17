@@ -10,7 +10,7 @@ APP_TIMEOUT_SECONDS = 40
 
 
 @pytest.mark.cloud
-@pytest.mark.retry(3)
+@pytest.mark.retry(retries=3, delay=5)
 def test_run_app():
     with run_app_in_cloud(os.path.dirname(__file__)) as (
         _,
