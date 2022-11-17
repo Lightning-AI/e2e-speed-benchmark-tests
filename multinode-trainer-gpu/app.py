@@ -1,6 +1,6 @@
 # app.py
 import lightning as L
-from lightning.app.components import PyTorchLightningMultiNode
+from lightning.app.components import MultiNode
 from lightning.pytorch.demos.boring_classes import BoringModel
 
 
@@ -15,7 +15,7 @@ class LightningTrainerDistributed(L.LightningWork):
 # 2 GPU nodes (keep the 4v100 nodes)...
 # we want to make sure this cost is also going down...
 # so we can benchmark it
-component = PyTorchLightningMultiNode(
+component = MultiNode(
     LightningTrainerDistributed,
     num_nodes=2,
     cloud_compute=L.CloudCompute("gpu-multi-fast"), # 4 x v100
