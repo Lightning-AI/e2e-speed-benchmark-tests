@@ -6,7 +6,7 @@ import time
 from lightning.app.testing.testing import run_app_in_cloud
 
 
-APP_TIMEOUT_SECONDS = 60
+APP_TIMEOUT_SECONDS = 160
 
 @pytest.mark.cloud
 @pytest.mark.flaky(retries=3, delay=5)
