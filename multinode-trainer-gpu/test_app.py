@@ -1,3 +1,4 @@
+import logging
 import os
 import pytest
 import time
@@ -6,11 +7,14 @@ import time
 from lightning.app.testing.testing import run_app_in_cloud
 
 
-APP_TIMEOUT_SECONDS = 160
+APP_TIMEOUT_SECONDS = 100
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.mark.cloud
 @pytest.mark.flaky(retries=3, delay=5)
+@pytest.mark.skip(reason="TODO: not sure if we should enable multinode benchmarks on every PR due to cost")
 def test_run_app():
     with run_app_in_cloud(os.path.dirname(__file__)) as (
         _,
@@ -26,7 +30,9 @@ def test_run_app():
             for log in fetch_logs():
                 if "PRINTING LOGS" in log:
                     if start_time is None:
+                        logger.info("recieved log line from app running in cloud")
                         start_time = time.time()
                 if "BENCHMARK DONE" in log:
+                    logger.info(f"benchmark has completed in {time.time() - start_time} seconds")
                     has_logs = True
             time.sleep(0.1)

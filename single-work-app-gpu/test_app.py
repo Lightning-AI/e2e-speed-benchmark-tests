@@ -1,3 +1,4 @@
+import logging
 import os
 import pytest
 import time
@@ -6,7 +7,9 @@ import time
 from lightning.app.testing.testing import run_app_in_cloud
 
 
-APP_TIMEOUT_SECONDS = 160
+APP_TIMEOUT_SECONDS = 100
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.mark.cloud
@@ -26,7 +29,9 @@ def test_run_app():
             for log in fetch_logs():
                 if "PRINTING LOGS" in log:
                     if start_time is None:
+                        logger.info("recieved log line from app running in cloud")
                         start_time = time.time()
                 if "BENCHMARK DONE" in log:
+                    logger.info(f"benchmark has completed in {time.time() - start_time} seconds")
                     has_logs = True
             time.sleep(0.1)
