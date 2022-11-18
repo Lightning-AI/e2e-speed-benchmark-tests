@@ -32,6 +32,6 @@ def test_run_app():
                         logger.info("recieved log line from app running in cloud")
                         start_time = time.time()
                 if "BENCHMARK DONE" in log:
-                    logger.info(f"benchmark has completed in {time.time() - start_time} seconds")
+                    logger.info(f"benchmark has completed")
                     has_logs = True
             time.sleep(0.1)
