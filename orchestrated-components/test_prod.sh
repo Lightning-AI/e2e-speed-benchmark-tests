@@ -9,7 +9,7 @@ start_time=$SECONDS
 end_time=$(($start_time + $timeout))
 
 
-lightning run app app.py --cloud --name $app_name
+lightning run app app.py --cloud --name $app_name --open-ui false
 while [[ $SECONDS -lt $end_time ]]
 do
     time_now=$SECONDS
